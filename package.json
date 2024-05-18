@@ -1,0 +1,11 @@
+{
+  "name": "docbot",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "author": {
+    "name": "awt-256",
+    "url": "https://github.com/awt-256/docbot"
+  },
+  "dependencies": {}
+}
