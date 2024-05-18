@@ -40,8 +40,9 @@ for await (const event of bot.events) {
 bot.bind();
 
 // First we wait for someone else to select, to grab
-// the actual inner sheetId
+// the actual inner sheetId and revision index
 let sheetId = "";
+let revId = "";
 for await (const event of bot.events) {
     // event is directly from google's servers, so
     // you need to parse yourself. Luckily that is
@@ -52,15 +53,16 @@ for await (const event of bot.events) {
 
     const { selection } = data;
 
-    const [ranges, ..._rest] = selection;
+    const [ranges, _ts, _usr, rev, ..._rest] = selection;
     sheetId = ranges[1][1][1][1];
+    revId = rev;
 
     console.log("Found sheet id: " + sheetId);
 
     break;
 }
 
-await bot.select(sheetId, 0, 0);
+await bot.select(sheetId, rev, 0, 0);
 
 console.log("Clicked at 0, 0");
 
